@@ -21,7 +21,7 @@ class Document(models.Model):
     upload_time = models.DateTimeField(auto_now_add=True, editable=False)
 
     def __str__(self):
-        return self.title
+        return str(self.document) #self.title
     
     #def create(self):
     #    self.title = os.path.splitext(self.document)[0]

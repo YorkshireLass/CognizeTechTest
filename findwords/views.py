@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Document
 
 
 def home(request):
@@ -6,4 +7,5 @@ def home(request):
 
 
 def document_list(request):
-    return render(request, 'findwords/doc_list.html', {})
+    docs = Document.objects.filter().order_by('upload_time')
+    return render(request, 'findwords/doc_list.html', {'docs': docs})
