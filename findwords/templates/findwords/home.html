@@ -1,17 +1,13 @@
-<html>
-    <head>
-        <title>Interesting Words</title>
-    </head>
-    <body>
-        <div>
-            <h1>Home</h1>
-        </div>
-        <div>
-            <p>Hi there!</p>
-            <p>It works!</p>
-        </div>
-        <div>
-            <h1><a href="/">Go to Document List</a></h1>
-        </div>
-    </body>
-</html>
+{% extends "findwords/base.html" %}
+
+{% block content %}
+    <div class="content-title">
+        <h1>Home</h1>
+    </div>
+    <div class="content">
+        <p>Hi there!</p>
+        <p>It works!</p>
+    </div>
+    <div class="content-footer">
+    </div>
+{% endblock content %}

@@ -1,0 +1,56 @@
+<html>
+    {% load static %}
+    <head>
+        <title>Cognize</title>
+
+        <link rel="icon" type="image/png" href="{% static '/findwords/base/icons/favicon.ico' %}">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static '/findwords/css/findwords.css' %}">
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" type="text/css">
+    </head>
+    <body> 
+        <div class="page-header">
+            <table>
+                <tr>
+                    <td>
+                        <img src="{% static '/findwords/base/icons/orange2.png' %}" alt="Orange" style="height:50px;">
+                    </td>
+                    <td>
+                        <a href="/"><h1>Cognize</h1></a>
+                    </td>
+                    <td>
+                        <p>___</p>
+                    </td>
+                    <td>
+                        <a href="/">Home</a>
+                    </td>
+                    <td>
+                        ｜
+                    </td>
+                    <td>
+                        <a href="/upload/">Upload</a>
+                    </td>
+                    <td>
+                        ｜
+                    </td>
+                    <td>
+                        <a href="/documents/">Document List</a>
+                    </td>
+                    <td>
+                        ｜
+                    </td>
+                    <td>
+                        <a href="/interestingwords/">All Interesting Words</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="content container">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </body>
+</html>
