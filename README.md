@@ -12,13 +12,6 @@ This is a Django web application that:
 By using this app, you will become *cognizant* of your documents.
 
 
-#### Contents
-1. [ How to get up and running ](#run)
-2. [ How to use ](#use)
-
-
-<a name="run"></a>
-
 ## How to get up and running
 
 ### Run locally
@@ -46,9 +39,4 @@ This app was built on a Windows machine and has a SQLite3 database for ease of t
 A version of this application with a PostgreSQL backend has also been deployed to AWS Elastic Beanstalk. This can be accessed [here](https://choosealicense.com/licenses/mit/).
 
 
-<a name="use"></a>
-
-## How to use
-
-...
 
