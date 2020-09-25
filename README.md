@@ -43,7 +43,7 @@ This app was built on a Windows machine and has a SQLite3 database for ease of t
 
 ### See a running version
 
-A version of this application with a PostgreSQL backend has also been deployed to AWS Elastic Beanstalk. This can be accessed here: [Web App](https://choosealicense.com/licenses/mit/)
+A version of this application with a PostgreSQL backend has also been deployed to AWS Elastic Beanstalk. This can be accessed [here](https://choosealicense.com/licenses/mit/).
 
 
 <a name="use"></a>
