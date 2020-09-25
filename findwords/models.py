@@ -16,23 +16,19 @@ def validate_extension(document):
 
 class Document(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField(max_length=255, blank=True)
+    title = models.CharField(max_length=255)
     document = models.FileField(upload_to='documents/%Y/%m/%d', validators=[validate_extension])
     upload_time = models.DateTimeField(auto_now_add=True, editable=False)
 
     def __str__(self):
-        return str(self.document) #self.title
-    
-    #def create(self):
-    #    self.title = os.path.splitext(self.document)[0]
-    #    self.save()
+        return self.title #str(self.document)
 
 
 class Words(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     document = models.ForeignKey(Document, on_delete=models.CASCADE)
-    word = models.CharField(max_length=50, blank=True)
-    occurences = models.IntegerField(blank=True)
+    word = models.CharField(max_length=50)
+    occurences = models.IntegerField(null=True)
 
     def __str__(self):
         return self.word
@@ -41,8 +37,8 @@ class Words(models.Model):
 class Phrases(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     word = models.ForeignKey(Words, on_delete=models.CASCADE)
-    phrase = models.TextField(blank=True)
+    phrase = models.TextField(null=True)
 
     def __str__(self):
-        return self.word
+        return self.phrase
         

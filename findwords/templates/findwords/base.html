@@ -11,36 +11,39 @@
         <link rel="stylesheet" href="{% static '/findwords/css/findwords.css' %}">
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" type="text/css">
     </head>
+    {% block script %}
+    {% endblock script %}
     <body> 
+
         <div class="page-header">
             <table>
                 <tr>
                     <td>
-                        <img src="{% static '/findwords/base/icons/orange2.png' %}" alt="Orange" style="height:50px;">
+                        <a href="/"><img src="{% static '/findwords/base/icons/orange2.png' %}" alt="Orange" style="height:50px;"></a>
                     </td>
                     <td>
-                        <a href="/"><h1>Cognize</h1></a>
+                        <h1>Cognize</h1>
                     </td>
                     <td>
-                        <p>___</p>
+                        <h3>____</h3>
                     </td>
                     <td>
                         <a href="/">Home</a>
                     </td>
                     <td>
-                        ｜
+                        <h3>_</h3>
                     </td>
                     <td>
                         <a href="/upload/">Upload</a>
                     </td>
                     <td>
-                        ｜
+                        <h3>_</h3>
                     </td>
                     <td>
                         <a href="/documents/">Document List</a>
                     </td>
                     <td>
-                        ｜
+                        <h3>_</h3>
                     </td>
                     <td>
                         <a href="/interestingwords/">All Interesting Words</a>
@@ -48,9 +51,11 @@
                 </tr>
             </table>
         </div>
+
         <div class="content container">
             {% block content %}
             {% endblock content %}
         </div>
+
     </body>
 </html>

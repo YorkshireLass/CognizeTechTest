@@ -1,0 +1,17 @@
+{% extends "findwords/base.html" %}
+
+{% block script %}
+{% endblock script %}
+
+{% block content %}
+    <div class="content-title">
+        <h1>Interesting Words</h1>
+    </div>
+    <div class="content">
+        {% block word_list %}
+        {% endblock word_list %}
+    </div>
+    <div class="content-footer">
+        <a href="/documents/">See All Documents</a>
+    </div>
+{% endblock content %}

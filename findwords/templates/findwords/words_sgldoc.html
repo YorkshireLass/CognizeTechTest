@@ -1,0 +1,50 @@
+{% extends "findwords/words_main.html" %}
+
+{% block script %}
+{% endblock script %}
+
+{% block word_list %}
+    <div class="list-title">
+        <p>Click on any word to see the list of documents that words appears in.</p>
+        <table>
+            <tr>
+                <td>
+                    Document:
+                </td>
+                <td>
+                    <b>{% with data|first as first_item %}{{ first_item.doc }}{% endwith %}</b>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="list">
+        <table>
+            <tr>
+                <th style="width: 22%">
+                    Word (Occurences)
+                </th>
+                <th style="width: 78%">
+                    Phrase(s)
+                </th>
+            </tr>
+        </table>
+    </div>
+    <div class="list">
+        <div class="table-scroll">
+            <table>
+                {% for item in data %}
+                    <tr>
+                        <td style="width: 22%">
+                            <a href="{% url 'document_list' word=item.word %}">{{ item.word }} ( {{ item.occurences }} )</a>
+                        </td>
+                        <td style="width: 78%">
+                            {% for phrase in item.phrases %}
+                                    <p><i><small>"{{ phrase.0 }}<b>{{ phrase.1 }}</b>{{ phrase.2 }}"</small></i></p>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock word_list %}

@@ -1,0 +1,11 @@
+{% extends "findwords/base.html" %}
+
+{% block content %}
+    <div class="content-title">
+        <h1>Documents List</h1>
+    </div>
+    <div class="content">       
+        {% block doc_list %}
+        {% endblock doc_list %}
+    </div>
+{% endblock content %}

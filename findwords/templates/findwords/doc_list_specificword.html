@@ -1,0 +1,65 @@
+{% extends "findwords/docs_main.html" %}
+
+{% block doc_list %}
+    <div class="list-title">
+        <p>Click on a document to see all of its interesting words.</p>
+        <table>
+            <tr>
+                <td>
+                    Word:
+                </td>
+                <td>
+                    <b>{{ word }}</b>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>
+                    <small><i>Total occurences over all documents:</i></small>
+                </td>
+                <td>
+                    <small><i>{{ total_occur }}</i></small>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="list">
+        <div class="doc-table">
+            <table>
+                <tr>
+                    <th style="width: 150px">
+                        Document
+                    </th>
+                    <th style="width: 150px">
+                        Occurences
+                    </th>
+                    <th style="width: 250px">
+                        Uploaded
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="list">
+        <div class="doc-table">
+            <div class="table-scroll">
+                <table>
+                    {% for item in docs %}
+                        <tr>
+                            <td style="width: 150px">
+                                <a href="{% url 'words_list' uuid=item.doc.uuid %}">{{ item.doc }}</a>
+                            </td>
+                            <td style="width: 150px">
+                                {{ item.occurences }}
+                            </td>
+                            <td style="width: 250px">
+                                {{ item.doc.upload_time }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock doc_list %}

@@ -1,0 +1,14 @@
+{% extends 'findwords/base.html' %}
+
+{% block content %}
+    <div class="content-title">
+        <h1>Upload Documents</h1>
+    </div>
+    <div class="content">
+        <p>Upload as many or as few documents as you like. Note that the more you upload - the longer you'll have to wait to see your new interesting words!</p>
+        <form method="POST" class="post-form" enctype="multipart/form-data">{% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-default">Upload</button>
+        </form>
+    </div>
+{% endblock %}

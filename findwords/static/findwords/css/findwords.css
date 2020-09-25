@@ -1,13 +1,20 @@
 .page-header {
     background-color: #C25100;
-    margin-top: 0;
     padding: 10px 20px 20px 40px;
+    position: fixed;
+    top: 0;
+    margin-top: 0;
+    width: 100%;
 }
 
-.page-header table, th, td {
-    padding: 5px;
+.page-header table {
+    padding:0 10px 0 0;
+    border-spacing: 10  px;
+}
+
+.page-header td {
     text-align: left;
-    vertical-align: bottom;
+    vertical-align: middle;
 }
 
 .page-header img {
@@ -22,12 +29,12 @@
     vertical-align: bottom;
 }
 
-.page-header p {
+.page-header h3 {
     color: #C25100;
     vertical-align: bottom;
 }
 
-.page-header a, .page-header a:visited, .page-header a:active {
+.page-header a, a:visited, a:active {
     color: #ffffff;
     text-decoration: none;
     vertical-align: bottom;
@@ -37,8 +44,16 @@
     color: #FFF3AB;
 }
 
-.content {
+.page-header p {
+    color: #ffffff;
+    font-size: 10pt;
+    vertical-align: bottom;
+}
+
+.content-title {
+    padding: 20px;
     margin-left: 25px;
+    margin-top: 125px;
 }
 
 .content-title h1:hover {
@@ -47,19 +62,91 @@
     font-size: 26pt;
 }
 
-h1 {
+.content {
+    padding: 20px;
+    margin-left: 25px;
+    margin-top: 0px;
+    width: 95%;
+    height: 80%;
+}
+
+.content h1 {
     font-family: 'Lobster', cursive;
     font-size: 26pt;
 }
 
-h2, h3, h4 {
+.content h2, h3, h4 {
     font-family: 'Lobster', cursive;
 }
 
-.date {
-    color: #828282;
+.content a, p {
+    color: #000000;
+}
+.content a:hover {
+    color: #C25100;
 }
 
-.save {
-    float: right;
+.content table, th, td, tr {
+    padding: 5px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.content-footer {
+    padding: 20px;
+    margin-left: 25px;
+}
+
+.list-title {
+    padding: 0px 0px 20px 0px;
+}
+
+.list {
+    width: 100%;
+}
+
+.list a, p {
+    color: #000000;
+}
+.list a:hover {
+    color: #C25100;
+}
+
+.list table, tr {
+    padding: 5px;
+    text-align: left;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.list tr:nth-child(odd) {
+    background: #ffffff;
+}
+
+.list tr:nth-child(even) {
+    background: #fcf7d7;
+}
+
+.list th {
+    background: #404040;
+    color: #ffffff;
+    padding:7 20px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.list td {
+    padding:5 20px;
+    text-align: left;
+    vertical-align: top;
+    margin-top: 0px;
+}
+
+.table-scroll {
+  height: 415px;
+  overflow: auto;  
+}
+
+.doc-table table {
+    width: 600px;
 }

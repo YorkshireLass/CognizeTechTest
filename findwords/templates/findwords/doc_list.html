@@ -1,13 +1,39 @@
-{% extends "findwords/base.html" %}
+{% extends "findwords/docs_main.html" %}
 
-{% block content %}
-    <div class="content-title">
-        <h1>Documents List</h1>
+{% block doc_list %}
+    <div class="list-title">
+        <p>Click on a document to see its' interesting words, or <a href="/interestingwords/">see all Interesting Words</a>.</p>
     </div>
-    <div class="content">
-        <p>Click on a document to see its' interesting words.</p>
-        {% for doc in docs %}
-            <a href="/interestingwords/">{{ doc }}</a>
-        {% endfor %}
+    <div class="list">
+        <div class="doc-table">
+            <table>
+                <tr>
+                    <th style="width: 150px">
+                        Document
+                    </th>
+                    <th style="width: 250px">
+                        Uploaded
+                    </th>
+                </tr>
+            </table>
+        </div>
     </div>
-{% endblock content %}
+    <div class="list">
+        <div class="doc-table">
+            <div class="table-scroll">
+                <table>
+                    {% for doc in docs %}
+                        <tr>
+                            <td style="width: 150px">
+                                <a href="{% url 'words_list' uuid=doc.uuid %}">{{ doc }}</a>
+                            </td>
+                            <td style="width: 250px">
+                                {{ doc.upload_time }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock doc_list %}

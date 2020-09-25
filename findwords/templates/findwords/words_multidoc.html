@@ -1,0 +1,47 @@
+{% extends "findwords/words_main.html" %}
+
+{% block word_list %}
+    <div class="list-title">
+        <p>
+            Explore the interesting words for any individual document by clicking on the document name; and click on any word to see the list of documents that words appears in.
+        </p>
+    </div>
+    <div class="list">
+        <table>
+            <tr>
+                <th style="width: 15%">
+                    Word (Occurences)
+                </th>
+                <th style="width: 15%">
+                    Document(s)
+                </th>
+                <th style="width: 70%">
+                    Phrase(s)
+                </th>
+            </tr>
+        </table>
+    </div>
+    <div class="list">
+        <div class="table-scroll">
+            <table>
+                {% for item in data %}
+                    <tr>
+                        <td style="width: 15%">
+                            <p><a href="{% url 'document_list' word=item.word %}">{{ item.word }} ( {{ item.occurences }} )</a></p>
+                        </td>
+                        <td style="width: 15%">
+                            {% for doc in item.docs %}
+                                <p><a href="{% url 'words_list' uuid=doc.uuid %}">{{ doc }}</a></p>
+                            {% endfor %}
+                        </td>
+                        <td style="width: 70%">
+                            {% for phrase in item.phrases %}
+                                    <p><i><small>"{{ phrase.0 }}<b>{{ phrase.1 }}</b>{{ phrase.2 }}"</small></i></p>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock word_list %}
