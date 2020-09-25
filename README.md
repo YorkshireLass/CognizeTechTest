@@ -1,4 +1,3 @@
-"# EigenTechTest" 
 
 # Cognize - Coding Challenge for Eigen Technology
 
@@ -10,7 +9,7 @@ This is a Django web application that:
 * analyses the text within those documents to extract the interesting words; and 
 * displays those interesting words and where they were extracted from (sentences and documents). 
 
-##### Contents
+#### Contents
 1. [ How to get up and running ](#run)
 2. [ How to use ](#use)
 
