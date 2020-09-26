@@ -21,8 +21,10 @@ To clone and run this application, you'll need [Git](https://git-scm.com/downloa
 This app was built on a Windows machine and has a SQLite3 database for ease of transfer. To run the project on Windows do the following in command line:
 
 ```bash
+# Make sure you are on the 'sqllite' branch
+
 # Clone this repository
-> git clone LINK
+> git clone https://github.com/YorkshireLass/EigenTechTest.git
 
 # Go into the app repository
 > cd app
