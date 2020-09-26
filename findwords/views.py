@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from .forms import DocumentForm
 import os
-from .utils import analyse
+from .utils import analyse, get_word_data
 
 
 def home(request):
@@ -37,64 +37,18 @@ def words_list(request, uuid=None):
     if uuid==None:
         page = 'findwords/words_multidoc.html'
         all_new_words = Words.objects.all().order_by('word')
-        [x for x in all_new_words] # cache the queryset
 
         if len(all_new_words) == 0:
             page = 'findwords/no_words.html'
         else:
-            # Get distinct word list
-            distinct_words = list(set([x.word for x in all_new_words]))
-            
-            for w in distinct_words:
-                # Get all occurences of current word
-                current_word = [x for x in all_new_words if x.word == w]
+            data = get_word_data(all_new_words)
 
-                phrases = list()
-                for x in current_word:
-                    new_phrases = Phrases.objects.filter(word=x)
-                    [x for x in new_phrases] # cache the queryset
-                    
-                    for p in new_phrases:
-                        sentence = list()
-                        sentence.append(str(p)[ 0 : str(p).find(str(w)) ])
-                        sentence.append(str(w))
-                        sentence.append(str(p)[ str(p).find(str(w))+len(str(w)) : len(str(p)) ])
-                        phrases.append(sentence)
-
-                distinct_phrases = [tuple(i) for i in phrases]
-
-                data.append({
-                    'word': w,
-                    'occurences': sum([x.occurences for x in current_word]),
-                    'docs': [x.document for x in current_word],
-                    'phrases': distinct_phrases
-                })
-        
     # Single Document
     elif not(uuid==None):
         page = 'findwords/words_sgldoc.html'
         doc = get_object_or_404(Document, uuid=uuid)
         new_words = Words.objects.filter(document=doc)
-        [w for w in new_words] # cache the queryset
-
-        for w in new_words:
-            data.append({
-                'word': w,
-                'occurences': w.occurences,
-                'doc': doc,
-                'phrases': [
-                    (
-                        str(p)[ 0 : str(p).find(str(w)) ],
-                        str(w),
-                        str(p)[ str(p).find(str(w))+len(str(w)) : len(str(p)) ]
-                    ) for p in Phrases.objects.filter(word=w)
-                    ]
-            })
-
-    try:
-        data.sort(key=lambda x: x['occurences'], reverse=True)
-    except Exception as e:
-        print("Error: Unable to sort data due to exception: {}".format(e))
+        data = get_word_data(new_words, doc_set=[doc])
 
     return render(request, page, {'data': data})
 

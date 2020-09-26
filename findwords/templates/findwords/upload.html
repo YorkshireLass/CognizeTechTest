@@ -5,10 +5,19 @@
         <h1>Upload Documents</h1>
     </div>
     <div class="content">
-        <p>Upload as many or as few documents as you like. Note that the more you upload - the longer you'll have to wait to see your new interesting words!</p>
+        <p>Upload as many, or as few, documents as you like and Cognize will analyse the text. Note that the more you upload - the longer you'll have to wait to see your new interesting words!</p>
         <form method="POST" class="post-form" enctype="multipart/form-data">{% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="save btn btn-default">Upload</button>
+            <button type="submit" class="save btn btn-default" onclick="displayTextUpload()">Upload</button>
         </form>
+        <div id="upload-text"></div>
     </div>
 {% endblock %}
+
+{% block script %}
+    <script>
+        function displayTextUpload() {
+        document.getElementById("upload-text").innerHTML = "Analysing document(s)...";
+        }
+    </script>
+{% endblock script %}

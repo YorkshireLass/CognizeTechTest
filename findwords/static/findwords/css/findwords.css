@@ -1,3 +1,7 @@
+small {
+    font-size: 8pt;
+}
+
 .page-header {
     background-color: #C25100;
     padding: 10px 20px 20px 40px;
@@ -34,7 +38,7 @@
     vertical-align: bottom;
 }
 
-.page-header a, a:visited, a:active {
+.page-header small, a, a:visited, a:active {
     color: #ffffff;
     text-decoration: none;
     vertical-align: bottom;
@@ -140,6 +144,10 @@
     text-align: left;
     vertical-align: top;
     margin-top: 0px;
+}
+
+.list small {
+    font-size: 10.5pt;
 }
 
 .table-scroll {

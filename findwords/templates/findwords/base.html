@@ -13,6 +13,11 @@
     </head>
     {% block script %}
     {% endblock script %}
+    <script>
+        function displayLoadingText() {
+        document.getElementById("loading-text").innerHTML = "(Loading...)";
+        }
+    </script>
     <body> 
 
         <div class="page-header">
@@ -46,7 +51,10 @@
                         <h3>_</h3>
                     </td>
                     <td>
-                        <a href="/interestingwords/">All Interesting Words</a>
+                        <a href="/interestingwords/" onclick="displayLoadingText()">All Interesting Words</a>
+                    </td>
+                    <td>
+                        <small><i><div id="loading-text"></div></i></small>
                     </td>
                 </tr>
             </table>

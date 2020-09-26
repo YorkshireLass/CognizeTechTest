@@ -9,7 +9,8 @@ import os
 def validate_extension(document):
     document = str(document)
     extension = os.path.splitext(document)[1]
-    acceptable_extensions = ['.txt']#, '.doc', '.docx', '.pdf']
+    # This could be expanded to include Word and PDF docs in future
+    acceptable_extensions = ['.txt']
     if not extension in acceptable_extensions:
         raise ValidationError(u'Error: Unsupported file type uploaded.')
 
@@ -21,7 +22,7 @@ class Document(models.Model):
     upload_time = models.DateTimeField(auto_now_add=True, editable=False)
 
     def __str__(self):
-        return self.title #str(self.document)
+        return self.title
 
 
 class Words(models.Model):

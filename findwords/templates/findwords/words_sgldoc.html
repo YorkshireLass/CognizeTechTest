@@ -12,7 +12,7 @@
                     Document:
                 </td>
                 <td>
-                    <b>{% with data|first as first_item %}{{ first_item.doc }}{% endwith %}</b>
+                    <b>{% with data|first as first_item %}{{ first_item.docs.0 }}{% endwith %}</b>
                 </td>
             </tr>
         </table>

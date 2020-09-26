@@ -1,5 +1,6 @@
 import os, sys
 import nltk
+import re
 
 from django.shortcuts import get_object_or_404
 
@@ -7,6 +8,7 @@ from .models import Document, Words, Phrases
 
 #nltk.download('punkt')
 #nltk.download('stopwords')
+#nltk.download('names')
 
 def export_text(doc):
     filepath = str(doc)
@@ -22,42 +24,97 @@ def export_text(doc):
 
 
 def get_stopwords():
-    all_stopwords = set(nltk.corpus.stopwords.words("english"))
-    all_stopwords.add(",")
-    all_stopwords.add(".")
-    all_stopwords.add("'s")
-    all_stopwords.add("us")
-    all_stopwords.add("-")
-    all_stopwords.add("'ve")
-    all_stopwords.add("n't")
-    all_stopwords.add("'re")
-    all_stopwords.add(";")
-    all_stopwords.add("?")
-    all_stopwords.add("'ll")
-    all_stopwords.add("'")
-    all_stopwords.add("''")
-    all_stopwords.add("``")
-    all_stopwords.add("’")
-    all_stopwords.add("'d")
-    all_stopwords.add("one")
-    all_stopwords.add("'m")
-    all_stopwords.add(":")
-    all_stopwords.add("!")
-    all_stopwords.add("$")
-    all_stopwords.add("--")
-    all_stopwords.add(r"[0-9]+")
+
+    nltk_stopwords = set(nltk.corpus.stopwords.words("english"))
+
+    new_stopwords = [
+        ",",
+        ".",
+        "'s",
+        "us",
+        "-",
+        "'ve",
+        "n't",
+        "'re",
+        ";",
+        "?",
+        "'ll",
+        "'",
+        "''",
+        "``",
+        "’",
+        "'d",
+        "one",
+        "'m",
+        ":",
+        "!",
+        "$",
+        "--",
+        "ca",
+        "also",
+        "even",
+        "odd",
+        "else",
+        "one",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+        "%"
+    ]
+    names = nltk.corpus.names
+    male_names = names.words('male.txt')
+    female_names = names.words('female.txt')
+
+    all_stopwords = nltk_stopwords.union(new_stopwords, male_names, female_names)
 
     return all_stopwords
 
 
 def extract_interesting_words(data, tokenizer):
+    """
+    Testing word filtering conditions:
+
+    Regex test using https://regex101.com/ - Output: ".\Word-Filtering-Regex-Test.JPG"
+
+    NOT (   in Stopwords    )    AND      contains(r'( \D[^,\.]\D | (\d+/\d+) )') #Contains (non-digit & none of , or .) OR (digits with /)
+            <-- (1) -->                   <--------------- (2) ---------------->
+
+    Test 1: word = "better"     # Want True
+        (1) = FALSE
+        NOT( (1) ) = TRUE
+        (2) = TRUE
+        NOT( (1) ) AND (2) = TRUE
+
+    Test 2: word = "2,000"     # Want False
+        (1) = FALSE
+        NOT( (1) ) = TRUE
+        (2) = FALSE
+        NOT( (1) ) AND (2) = FALSE
+
+    Test 3: word = "9/11"     # Want True
+        (1) = FALSE
+        NOT( (1) ) = TRUE
+        (2) = TRUE
+        NOT( (1) ) AND (2) = TRUE
+
+    Test 4: word = "and"     # Want False
+        (1) = TRUE
+        NOT( (1) ) = FALSE
+        (2) = TRUE
+        NOT( (1) ) AND (2) = FALSE
+
+    """
 
     words = nltk.word_tokenize(data)
-    words_1 = [w.lower() for w in words]
 
     all_stopwords = get_stopwords()
 
-    filtered_words = [w for w in words_1 if w not in all_stopwords]
+    filtered_words = [w for w in words if not(w.lower() in all_stopwords) and re.search(r'(\D[^,\.]\D|(\d+/\d+))', w.lower())]
 
     fdist = nltk.FreqDist(filtered_words)
 
@@ -94,7 +151,7 @@ def analyse(doc_uuid):
                 )
 
             for (w, freq) in interesting_words:
-                # Save word and frequencry
+                # Save word and frequency
                 word_instance = Words(word=w)
                 word_instance.document = doc
                 word_instance.occurences = freq
@@ -102,15 +159,54 @@ def analyse(doc_uuid):
 
                 if all_phrases:
                     for sent in all_phrases:
+
                         # If Word is not embedded in another word in sentence
-                        if " "+ w +" " in sent or w +" " in sent or " "+ w in sent:
+                        if re.search( r'(\s|^)+{word}(\s|$|[\.?!;:])+'.format(word=w.lower()), sent.lower() ):
                             # Save sentence
                             sent_instance = Phrases(phrase=sent)
                             sent_instance.word = word_instance
                             sent_instance.save()
 
         print("Text analysed.")
-    
 
-#if __name__ == '__main__':
-#    analyse('6bf5a021-a846-445d-a233-2371d947c8e4')
+
+def get_word_data(new_words, doc_set=Document.objects.all()):
+    data = []
+
+    # Get distinct word list
+    distinct_words = list(set([x.word for x in new_words]))
+    
+    for w in distinct_words:
+        # Get all occurences of current word
+        current_word = [x for x in new_words if x.word == w and x.document in doc_set]
+
+        phrases = list()
+        for x in current_word:
+            new_phrases = Phrases.objects.filter(word=x)
+            [x for x in new_phrases] # cache the queryset
+            
+            for p in new_phrases:
+                sentence = list()
+                lower_case_phrase = str(p).lower()
+                word_index = lower_case_phrase.find(str(w).lower())
+                sentence.append(str(p)[ 0 : word_index ])
+                sentence.append(str(w))
+                sentence.append(str(p)[ word_index+len(str(w)) : len(str(p)) ])
+                phrases.append(sentence)
+
+        distinct_phrases = [tuple(i) for i in phrases]
+
+        data.append({
+            'word': w,
+            'occurences': sum([x.occurences for x in current_word]),
+            'docs': [x.document for x in current_word],
+            'phrases': distinct_phrases
+        })
+    
+    try:
+        data.sort(key=lambda x: x['occurences'], reverse=True)
+    except Exception as e:
+        print("Error: Unable to sort data due to exception: {}".format(e))
+
+    return data
+
