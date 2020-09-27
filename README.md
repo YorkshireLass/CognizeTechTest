@@ -35,5 +35,9 @@ This app was built on a Windows machine and has a SQLite database for ease of tr
 
 A version of this application has also been deployed to PythonAnywhere. This can be accessed [here](http://yorkshirelass.pythonanywhere.com/).
 
+Once loaded, the homepage should appear like this...
+
+![Cognize-Home](./media/images/HomeScreenshot.jpg)
+
 
 
