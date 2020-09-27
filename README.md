@@ -35,9 +35,13 @@ This app was built on a Windows machine and has a SQLite database for ease of tr
 
 A version of this application has also been deployed to PythonAnywhere. This can be accessed [here](http://yorkshirelass.pythonanywhere.com/).
 
+## How to use
+
 Once loaded, the homepage should appear like this...
 
 ![Cognize-Home](https://github.com/YorkshireLass/CognizeTechTest/blob/master/media/images/CognizeHome.PNG)
+
+Some test documents are located [here](https://github.com/YorkshireLass/CognizeTechTest/blob/master/TestDocs) that can be uploaded. Follow the instructions on the homepage and have fun!
 
 
 
