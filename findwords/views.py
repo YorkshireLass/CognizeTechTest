@@ -65,7 +65,10 @@ def upload(request):
                 doc_instance.title = os.path.splitext(filename)[0]
                 doc_instance.save()
                 print("Uploaded document: ", doc_instance, " - ", doc_instance.uuid)
-                analyse(doc_instance.uuid)
+
+                current_site = request.get_host()
+                analyse(doc_instance.uuid, current_site)
+
             return redirect('upload_successful')
     else:
         form = DocumentForm()

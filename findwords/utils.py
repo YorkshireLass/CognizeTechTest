@@ -3,7 +3,8 @@ import nltk
 import re
 
 from django.shortcuts import get_object_or_404
-from django.contrib.sites.models import get_current_site
+from django.contrib.sites.models import Site
+from django.contrib.sites.shortcuts import get_current_site
 
 from .models import Document, Words, Phrases
 
@@ -11,18 +12,16 @@ from .models import Document, Words, Phrases
 #nltk.download('stopwords')
 #nltk.download('names')
 
-def export_text(doc):
+def export_text(doc, current_site):
     filepath = str(doc)
     filename = os.path.split(filepath)[1]
     extension = os.path.splitext(filename)[1]
 
-    request = None
-    if get_current_site(request).domain == 'http://yorkshirelass.pythonanywhere.com/':
-        THIS_FOLDER = os.getcwd()
-        my_file = os.path.join(THIS_FOLDER, get_current_site(request).domain, filepath)
+    if current_site == '127.0.0.1:8000':
+        my_file = os.path.join(filepath)
     else:
-        my_file = os.path.join("media", filepath)
-
+        THIS_FOLDER = os.getcwd()
+        my_file = os.path.join(THIS_FOLDER, 'yorkshirelass.pythonanywhere.com', filepath)
 
     if extension == ".txt":
         with open(my_file, "r", encoding="utf-8") as f:
@@ -137,12 +136,12 @@ def extract_phrases(data, tokenizer):
     return sentences
 
 
-def analyse(doc_uuid):
+def analyse(doc_uuid, current_site):
 
     doc = get_object_or_404(Document, uuid=doc_uuid)
     filepath = os.path.join("media", os.path.normpath(str(doc.document)))
 
-    data = export_text(filepath)
+    data = export_text(filepath, current_site)
     tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
 
     # Get data from file
