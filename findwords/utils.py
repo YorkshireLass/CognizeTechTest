@@ -14,9 +14,12 @@ def export_text(doc):
     filepath = str(doc)
     filename = os.path.split(filepath)[1]
     extension = os.path.splitext(filename)[1]
+        
+    THIS_FOLDER = os.getcwd()
+    my_file = os.path.join(THIS_FOLDER, filepath)
 
     if extension == ".txt":
-        with open(filepath, "r", encoding="utf-8") as f:
+        with open(my_file, "r", encoding="utf-8") as f:
             data = f.read()
         return data
     else:
