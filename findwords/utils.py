@@ -3,6 +3,7 @@ import nltk
 import re
 
 from django.shortcuts import get_object_or_404
+from django.contrib.sites.models import get_current_site
 
 from .models import Document, Words, Phrases
 
@@ -14,9 +15,14 @@ def export_text(doc):
     filepath = str(doc)
     filename = os.path.split(filepath)[1]
     extension = os.path.splitext(filename)[1]
-        
-    THIS_FOLDER = os.getcwd()
-    my_file = os.path.join(THIS_FOLDER, filepath)
+
+    request = None
+    if get_current_site(request).domain == 'http://yorkshirelass.pythonanywhere.com/':
+        THIS_FOLDER = os.getcwd()
+        my_file = os.path.join(THIS_FOLDER, get_current_site(request).domain, filepath)
+    else:
+        my_file = os.path.join("media", filepath)
+
 
     if extension == ".txt":
         with open(my_file, "r", encoding="utf-8") as f:
