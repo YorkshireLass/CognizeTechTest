@@ -120,7 +120,7 @@ def extract_interesting_words(data, tokenizer):
 
     all_stopwords = get_stopwords()
 
-    filtered_words = [w for w in words if not(w.lower() in all_stopwords) and re.search(r'(\D[^,\.]\D|(\d+/\d+))', w.lower())]
+    filtered_words = [w.lower() for w in words if not(w.lower() in all_stopwords) and re.search(r'(\D[^,\.]\D|(\d+/\d+))', w.lower())]
 
     fdist = nltk.FreqDist(filtered_words)
 
@@ -196,14 +196,14 @@ def get_word_data(new_words, doc_set=Document.objects.all()):
                 lower_case_phrase = str(p).lower()
                 word_index = lower_case_phrase.find(str(w).lower())
                 sentence.append(str(p)[ 0 : word_index ])
-                sentence.append(str(w))
+                sentence.append(str(w).capitalize())
                 sentence.append(str(p)[ word_index+len(str(w)) : len(str(p)) ])
                 phrases.append(sentence)
 
         distinct_phrases = [tuple(i) for i in phrases]
 
         data.append({
-            'word': w,
+            'word': w.title(),
             'occurences': sum([x.occurences for x in current_word]),
             'docs': [x.document for x in current_word],
             'phrases': distinct_phrases
