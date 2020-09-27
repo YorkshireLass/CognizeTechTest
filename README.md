@@ -24,6 +24,9 @@ This app was built on a Windows machine and has a SQLite database for ease of tr
 # Clone this repository
 > git clone https://github.com/YorkshireLass/CognizeTechTest.git
 
+# Change directory
+> cd CognizeTechTest
+
 # Activate the virtual environment
 > djangovenv\Scripts\activate
 
