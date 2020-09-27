@@ -27,7 +27,7 @@ def document_list(request, word=None):
         total = sum([x['occurences'] for x in docs])
         page = 'findwords/doc_list_specificword.html'
 
-    return render(request, page, {'docs': docs, 'word': word, 'total_occur': total})
+    return render(request, page, {'docs': docs, 'word': word.title(), 'total_occur': total})
 
 
 def words_list(request, uuid=None):

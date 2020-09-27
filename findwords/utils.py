@@ -196,7 +196,7 @@ def get_word_data(new_words, doc_set=Document.objects.all()):
                 lower_case_phrase = str(p).lower()
                 word_index = lower_case_phrase.find(str(w).lower())
                 sentence.append(str(p)[ 0 : word_index ])
-                sentence.append(str(w).capitalize())
+                sentence.append(str(w).upper())
                 sentence.append(str(p)[ word_index+len(str(w)) : len(str(p)) ])
                 phrases.append(sentence)
 
