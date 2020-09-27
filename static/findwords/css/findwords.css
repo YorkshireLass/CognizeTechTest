@@ -1,0 +1,160 @@
+small {
+    font-size: 8pt;
+}
+
+.page-header {
+    background-color: #C25100;
+    padding: 10px 20px 20px 40px;
+    position: fixed;
+    top: 0;
+    margin-top: 0;
+    width: 100%;
+}
+
+.page-header table {
+    padding:0 10px 0 0;
+    border-spacing: 10  px;
+}
+
+.page-header td {
+    text-align: left;
+    vertical-align: middle;
+}
+
+.page-header img {
+    vertical-align: bottom;
+}
+
+.page-header h1, h1:hover {
+    font-family: 'Lobster', cursive;
+    color: #ffffff;
+    font-size: 36pt;
+    text-decoration: none;
+    vertical-align: bottom;
+}
+
+.page-header h3 {
+    color: #C25100;
+    vertical-align: bottom;
+}
+
+.page-header small, a, a:visited, a:active {
+    color: #ffffff;
+    text-decoration: none;
+    vertical-align: bottom;
+}
+
+.page-header a:hover {
+    color: #FFF3AB;
+}
+
+.page-header p {
+    color: #ffffff;
+    font-size: 10pt;
+    vertical-align: bottom;
+}
+
+.content-title {
+    padding: 20px;
+    margin-left: 25px;
+    margin-top: 125px;
+}
+
+.content-title h1:hover {
+    font-family: 'Lobster', cursive;
+    color: #000000;
+    font-size: 26pt;
+}
+
+.content {
+    padding: 20px;
+    margin-left: 25px;
+    margin-top: 0px;
+    width: 95%;
+    height: 80%;
+}
+
+.content h1 {
+    font-family: 'Lobster', cursive;
+    font-size: 26pt;
+}
+
+.content h2, h3, h4 {
+    font-family: 'Lobster', cursive;
+}
+
+.content a, p {
+    color: #000000;
+}
+.content a:hover {
+    color: #C25100;
+}
+
+.content table, th, td, tr {
+    padding: 5px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.content-footer {
+    padding: 20px;
+    margin-left: 25px;
+}
+
+.list-title {
+    padding: 0px 0px 20px 0px;
+}
+
+.list {
+    width: 100%;
+}
+
+.list a, p {
+    color: #000000;
+}
+.list a:hover {
+    color: #C25100;
+}
+
+.list table, tr {
+    padding: 5px;
+    text-align: left;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.list tr:nth-child(odd) {
+    background: #ffffff;
+}
+
+.list tr:nth-child(even) {
+    background: #fcf7d7;
+}
+
+.list th {
+    background: #404040;
+    color: #ffffff;
+    padding:7 20px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.list td {
+    padding:5 20px;
+    text-align: left;
+    vertical-align: top;
+    margin-top: 0px;
+}
+
+.list small {
+    font-size: 10.5pt;
+}
+
+.table-scroll {
+  height: 415px;
+  overflow: auto;  
+}
+
+.doc-table table {
+    width: 600px;
+}

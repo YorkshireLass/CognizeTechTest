@@ -18,16 +18,11 @@ By using this app, you will become *cognizant* of your documents.
 
 To clone and run this application, you'll need [Git](https://git-scm.com/downloads) and [Python](https://www.python.org/downloads/) installed on your computer.
 
-This app was built on a Windows machine and has a SQLite3 database for ease of transfer. To run the project on Windows do the following in command line:
+This app was built on a Windows machine and has a SQLite database for ease of transfer. To run the project on Windows do the following in command line:
 
 ```bash
-# Make sure you are on the 'sqllite' branch
-
 # Clone this repository
-> git clone https://github.com/YorkshireLass/EigenTechTest.git
-
-# Go into the app repository
-> cd app
+> git clone https://github.com/YorkshireLass/CognizeTechTest.git
 
 # Activate the virtual environment
 > djangovenv\Scripts\activate
@@ -38,7 +33,7 @@ This app was built on a Windows machine and has a SQLite3 database for ease of t
 
 ### See a running version
 
-A version of this application with a PostgreSQL backend has also been deployed to AWS Elastic Beanstalk. This can be accessed [here](https://choosealicense.com/licenses/mit/).
+A version of this application has also been deployed to PythonAnywhere. This can be accessed [here](http://yorkshirelass.pythonanywhere.com/).
 
 
 
