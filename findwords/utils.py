@@ -50,7 +50,6 @@ def get_stopwords():
         "``",
         "’",
         "'d",
-        "one",
         "'m",
         ":",
         "!",
@@ -70,7 +69,8 @@ def get_stopwords():
         "seven",
         "eight",
         "nine",
-        "%"
+        "%",
+        "let"
     ]
     names = nltk.corpus.names
     male_names = names.words('male.txt')
