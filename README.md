@@ -37,7 +37,7 @@ A version of this application has also been deployed to PythonAnywhere. This can
 
 Once loaded, the homepage should appear like this...
 
-![Cognize-Home](https://github.com/YorkshireLass/CognizeTechTest/blob/master/media/images/HomeScreenshot.JPG)
+![Cognize-Home](https://github.com/YorkshireLass/CognizeTechTest/blob/master/media/images/HomeScreenshot.PNG)
 
 
 
