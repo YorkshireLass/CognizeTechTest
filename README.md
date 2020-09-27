@@ -38,6 +38,8 @@ This app was built on a Windows machine and has a SQLite database for ease of tr
 
 A version of this application has also been deployed to PythonAnywhere. This can be accessed [here](http://yorkshirelass.pythonanywhere.com/).
 
+Note PythonAnywhere only allows limited CPU power to be used, so please don't upload too many documents at once or it may break! This isn't a problem when run locally.
+
 ## How to use
 
 Once loaded, the homepage should appear like this...
