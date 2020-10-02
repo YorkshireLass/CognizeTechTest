@@ -1,5 +1,5 @@
 
-# Cognize - Coding Challenge for Eigen Technology
+# Cognize - Coding Challenge
 
 Cognize *[verb]*:
 > to know or become aware of
