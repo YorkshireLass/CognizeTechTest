@@ -1,7 +1,11 @@
+from __future__ import print_function
+from django.conf import settings
+import os, sys
+
 from django.shortcuts import render, get_object_or_404, redirect
+
 from .models import *
 from .forms import DocumentForm
-import os
 from .utils import analyse, get_word_data
 
 
@@ -21,8 +25,9 @@ def document_list(request, word=None):
             page = 'findwords/doc_list.html'
     # Specific Word provided
     else:
+        print(word,file=sys.stderr)
         all_words = Words.objects.all().order_by('word')
-        docs = [{'doc': x.document, 'occurences': x.occurences} for x in all_words if x.word == word]
+        docs = [{'doc': x.document, 'occurences': x.occurences} for x in all_words if x.word.lower() == word.lower()]
         docs.sort(key=lambda x: x['occurences'], reverse=True)
         total = sum([x['occurences'] for x in docs])
         word = word.title()

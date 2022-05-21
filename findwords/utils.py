@@ -1,14 +1,17 @@
+
+from __future__ import print_function
+from django.conf import settings
 import os, sys
-import nltk
-import re
+
+import nltk, re
 
 from django.shortcuts import get_object_or_404
 
 from .models import Document, Words, Phrases
 
-#nltk.download('punkt')
-#nltk.download('stopwords')
-#nltk.download('names')
+nltk.download(['stopwords', 'names', 'punkt'])
+print('Successfully downloaded necessary packages.\nApplication can be accessed via: http://127.0.0.1:8000',file=sys.stderr)
+
 
 def export_text(doc, current_site):
     filepath = str(doc)

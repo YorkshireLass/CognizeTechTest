@@ -14,11 +14,7 @@ By using this app, you will become *cognizant* of your documents.
 
 ## How to get up and running
 
-### Run locally
-
-To clone and run this application, you'll need [Git](https://git-scm.com/downloads) and [Python](https://www.python.org/downloads/) installed on your computer.
-
-This app was built on a Windows machine and has a SQLite database for ease of transfer. To run the project on Windows do the following in command line:
+Firstly, ensure you have [Git](https://git-scm.com/downloads) installed.
 
 ```bash
 # Clone this repository
@@ -26,19 +22,34 @@ This app was built on a Windows machine and has a SQLite database for ease of tr
 
 # Change directory
 > cd CognizeTechTest
-
-# Activate the virtual environment
-> djangovenv\Scripts\activate
-
-# Run the app
-> python manage.py runserver
 ```
 
-### See a running version
+### If you have Docker installed...
 
-A version of this application has also been deployed to PythonAnywhere. This can be accessed [here](http://yorkshirelass.pythonanywhere.com/).
+Enter the following in command line/terminal:
 
-**Note:** PythonAnywhere only allows limited CPU power to be used, so please don't upload too many documents at once or it may break! This isn't a problem when run locally.
+```bash
+# Build and run the application
+% ./dockerbuild.sh
+```
+
+### To run on MacOS...
+
+To run this application, you'll need [Python](https://www.python.org/downloads/) installed. Then enter the following in terminal:
+
+```bash
+# Activate the virtual environment and run the server
+> ./macosbuild.sh
+```
+
+### To run on Windows...
+
+To run this application, you'll need [Python](https://www.python.org/downloads/) installed. Then enter the following in command line:
+
+```bash
+# Activate the virtual environment and run the server
+> ./windowsbuild.sh
+```
 
 ## How to use
 
