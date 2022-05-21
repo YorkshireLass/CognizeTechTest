@@ -30,7 +30,7 @@ Enter the following in command line/terminal:
 
 ```bash
 # Build and run the application
-% ./dockerbuild.sh
+> ./dockerbuild.sh
 ```
 
 ### To run on MacOS...
